@@ -24,6 +24,12 @@ pipeline {
                 sh "mvn package"
             }
         }
+        stage('---run python---') {
+            steps {
+                sh "python3 test.py arg1 arg2 arg3}"
+                sh "python3 test.py ${params.Sonar_IP} ${params.Sonar_URL}"
+            }
+        }
     }
 }
 
