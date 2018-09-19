@@ -28,6 +28,7 @@ pipeline {
             steps {
                 sh "python3 test.py arg1 arg2 arg3}"
                 sh "python3 test.py ${params.Sonar_IP} ${params.Sonar_URL}"
+                sh "python3 testA.py ${params.Sonar_IP} ${params.Sonar_URL}"
             }
         }
     }
