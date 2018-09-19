@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    paramters { 
+    parameters { 
         string(name: 'Sonar_IP', defaultValue: '172.23.164.252', description: 'Sonar ')
     } 
     stages {
