@@ -36,7 +36,7 @@ pipeline {
                 echo "-------------------------------------"
                 echo "-------SonarQube - Running -------------"
                 echo "-------------------------------------"
-                sh "mvn sonar:sonar -sonar.host.url=${params.Sonar_URL}"
+                sh "mvn sonar:sonar"
             }
         }
 
