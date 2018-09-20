@@ -1,7 +1,6 @@
 pipeline {
     agent any
     parameters { 
-        string(name: 'Sonar_IP', defaultValue: '172.23.164.252', description: 'Sonar IP ')
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
         string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
     } 
@@ -9,7 +8,7 @@ pipeline {
         stage('---display parameters---') {
             steps {
                 echo "-------------------------------------"
-                echo "${params.Sonar_IP} Sonar IP address"
+                echo "${params.Repo_Name} Repository name"
                 echo "${params.Sonar_URL} Sonar URL"
                 echo "-------------------------------------"
             }
