@@ -3,6 +3,7 @@ pipeline {
     parameters { 
         string(name: 'Sonar_IP', defaultValue: '172.23.164.252', description: 'Sonar IP ')
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
+        string(name: 'Repo_Name', defaultValue: 'my-app', description: 'Repo name ')
     } 
     stages {
         stage('---clean---') {
@@ -30,9 +31,23 @@ pipeline {
                 sh "python3 test.py ${params.Sonar_IP} ${params.Sonar_URL}"
             }
         }
+        stage('---sonarqube analysis---') {
+            steps {
+                echo "-------------------------------------"
+                echo "-------SonarQube - Running -------------"
+                echo "-------------------------------------"
+                sh "mvn sonar:sonar -sonar.host.url=${params.Sonar_URL"
+            }
+        }
+
         stage('---run python from drive---') {
             steps {
                 sh "python3 /home/labuser/pythonScripts/testA.py ${params.Sonar_IP} ${params.Sonar_URL}"
+                echo "-------------------------------------"
+                echo "${params.Repo_Name} the Repo name"
+                echo "${params.Sonar_URL} Sonar URL"
+                echo "-------------------------------------"
+                sh "python3 /home/labuser/pythonScripts/TestA.py ${params.Repo_Name} ${params.Sonar_URL}"
             }
         }
 
