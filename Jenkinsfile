@@ -6,13 +6,17 @@ pipeline {
         string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
     } 
     stages {
-        stage('---clean---') {
+        stage('---display parameters---') {
             steps {
-                sh "mvn clean"
                 echo "-------------------------------------"
                 echo "${params.Sonar_IP} Sonar IP address"
                 echo "${params.Sonar_URL} Sonar URL"
                 echo "-------------------------------------"
+            }
+        }
+        stage('---clean---') {
+            steps {
+                sh "mvn clean"
             }
         }
         stage('---test---') {
@@ -25,12 +29,6 @@ pipeline {
                 sh "mvn package"
             }
         }
-        stage('---run python---') {
-            steps {
-                sh "python3 test.py arg1 arg2 arg3"
-                sh "python3 test.py ${params.Sonar_IP} ${params.Sonar_URL}"
-            }
-        }
         stage('---sonarqube analysis---') {
             steps {
                 echo "-------------------------------------"
@@ -39,19 +37,14 @@ pipeline {
                 sh "mvn sonar:sonar"
             }
         }
-
-        stage('---run python from drive---') {
+        stage('---run CheckSonarQubeQualityGate.py python script---') {
             steps {
-                sh "python3 /home/labuser/pythonScripts/testA.py ${params.Sonar_IP} ${params.Sonar_URL}"
                 echo "-------------------------------------"
                 echo "${params.Repo_Name} the Repo name"
                 echo "${params.Sonar_URL} Sonar URL"
                 echo "-------------------------------------"
-                sh "python3 /home/labuser/pythonScripts/testA.py ${params.Repo_Name} ${params.Sonar_URL}"
                 sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
             }
         }
-
     }
 }
-
