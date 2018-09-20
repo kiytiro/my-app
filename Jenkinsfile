@@ -3,7 +3,7 @@ pipeline {
     parameters { 
         string(name: 'Sonar_IP', defaultValue: '172.23.164.252', description: 'Sonar IP ')
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
-        string(name: 'Repo_Name', defaultValue: '/var/lib/jenkins/workspace/ParameterQualityGate_1', description: 'Repo name ')
+        string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
     } 
     stages {
         stage('---clean---') {
