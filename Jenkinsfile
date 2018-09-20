@@ -3,7 +3,7 @@ pipeline {
     parameters { 
         string(name: 'Sonar_IP', defaultValue: '172.23.164.252', description: 'Sonar IP ')
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
-        string(name: 'Repo_Name', defaultValue: 'my-app', description: 'Repo name ')
+        string(name: 'Repo_Name', defaultValue: '/var/lib/jenkins/workspace/ParameterQualityGate_1', description: 'Repo name ')
     } 
     stages {
         stage('---clean---') {
@@ -47,7 +47,8 @@ pipeline {
                 echo "${params.Repo_Name} the Repo name"
                 echo "${params.Sonar_URL} Sonar URL"
                 echo "-------------------------------------"
-                sh "python3 /home/labuser/pythonScripts/TestA.py ${params.Repo_Name} ${params.Sonar_URL}"
+                sh "python3 /home/labuser/pythonScripts/testA.py ${params.Repo_Name} ${params.Sonar_URL}"
+                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
             }
         }
 
