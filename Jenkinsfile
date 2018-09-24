@@ -7,6 +7,7 @@ pipeline {
     parameters { 
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
         string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
+        string(name: 'Repo_Name11', defaultValue: determineRepoName, description: 'Repo name111 ')
     } 
     stages {
         stage('---display parameters---') {
