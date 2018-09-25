@@ -9,7 +9,10 @@ pipeline {
     stages {
         stage('---read pom.xml file---') {
             steps {
-              script {
+
+              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>) ./pom.xml')
+                
+//              script {
 //                   def pomFile = readFile('pom.xml')
 //                   def pomM = new XmlParser().parseText(pomFile)
 //                     echo "pomM file: " + pomM
@@ -26,7 +29,7 @@ pipeline {
 //                   def pom = readMavenPom file: 'pom.xml'
 //                   echo "${pom.version} pom version"
 //                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
-              }
+//              }
             }
         }
 
