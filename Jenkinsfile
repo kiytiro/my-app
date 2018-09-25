@@ -19,8 +19,8 @@ pipeline {
 //                   gavMap['version'] =  pomM['version'].text().trim()
              
                 echo "*******************************************************"
-                   echo "Version : " + pomM['version'].text().trim()
-                   def sonar_url = pomM['profiles'.'properties'.'sonari.host.url'].text().trim()
+                   echo "Version : " + pomM['version']
+                   def sonar_url = pomM['profiles'.'properties'.'sonari.host.url']
                    echo "Sonar URL: " + sonar_url
 
 //                   def pom = readMavenPom file: 'pom.xml'
