@@ -10,9 +10,9 @@ pipeline {
         stage('---read pom.xml file---') {
             steps {
 
-              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>)pom.xml')
+//              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>) pom.xml')
                 
-//              script {
+              script {
 //                   def pomFile = readFile('pom.xml')
 //                   def pomM = new XmlParser().parseText(pomFile)
 //                     echo "pomM file: " + pomM
@@ -29,7 +29,14 @@ pipeline {
 //                   def pom = readMavenPom file: 'pom.xml'
 //                   echo "${pom.version} pom version"
 //                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
-//              }
+                     
+                     //Extract the data you needed from existing xml
+                     def xml1 = new XmlSlurper().parseText('pom.xml') 
+                     def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
+                     def nodes = sonar_host.children()*.name()
+                     println XmlUtil.serialize(sonar_host)
+
+              }
             }
         }
 
