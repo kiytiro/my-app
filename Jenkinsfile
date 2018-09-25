@@ -1,6 +1,7 @@
 pipeline {
     agent any
 
+      def sonar_url
 
 //    parameters { 
 //        string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
@@ -12,6 +13,7 @@ pipeline {
               script {
                    def pomFile = readFile('pom.xml')
                    def pomM = new XmlParser().parseText(pomFile)
+                     echo "pomM file: " + pomM
  //                  def gavMap = [:]
 //                   gavMap['groupId'] =  pomM['groupId'].text().trim()
 //                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
@@ -19,7 +21,7 @@ pipeline {
              
                    echo "Version : " + pomM['version'].text().trim()
                    echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
-                   def sonar_url = pomM['sonar.host.url'].text().trim()
+                   sonar_url = pomM['sonar.host.url'].text().trim()
 
 //                   def pom = readMavenPom file: 'pom.xml'
 //                   echo "${pom.version} pom version"
