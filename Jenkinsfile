@@ -15,6 +15,7 @@ pipeline {
                 echo "-------------------------------------"
                 echo "${params.Repo_Name} Repository name"
                 echo "${params.Sonar_URL} Sonar URL"
+                echo  "${params.Repo_Name11} Repository name11"
                 echo "-------------------------------------"
             }
         }
