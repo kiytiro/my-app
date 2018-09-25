@@ -6,9 +6,6 @@ String determineRepoName() {
 pipeline {
     agent any
 
-    def pom = readMavenPom file: 'pom.xml'
-    echo "${pom.version} pom version"
-    echo "${pom.sonar.host.url} sonarqube URL"
 
     parameters { 
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
@@ -16,6 +13,14 @@ pipeline {
         string(name: 'Repo_Name11', defaultValue: determineRepoName(), description: 'Repo name111 ')
     } 
     stages {
+        stage('---read pom.xml file---') {
+            steps {
+              def pom = readMavenPom file: 'pom.xml'
+              echo "${pom.version} pom version"
+              echo "${pom.sonar.host.url} sonarqube URL"
+            }
+        }
+
         stage('---display parameters---') {
             steps {
                 echo "-------------------------------------"
