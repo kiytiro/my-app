@@ -2,26 +2,26 @@ pipeline {
     agent any
 
 
-    parameters { 
-        string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
-        string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
-    } 
+//    parameters { 
+//        string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
+//        string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
+//    } 
     stages {
         stage('---read pom.xml file---') {
             steps {
               script {
                    def pomFile = readFile('pom.xml')
                    def pomM = new XmlParser().parseText(pomFile)
-                   def gavMap = [:]
-                   gavMap['groupId'] =  pomM['groupId'].text().trim()
-                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
-                   gavMap['version'] =  pomM['version'].text().trim()
+ //                  def gavMap = [:]
+//                   gavMap['groupId'] =  pomM['groupId'].text().trim()
+//                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
+//                   gavMap['version'] =  pomM['version'].text().trim()
              
                    echo "Version : " + pomM['version'].text().trim()
                    echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
 
-                   def pom = readMavenPom file: 'pom.xml'
-                   echo "${pom.version} pom version"
+//                   def pom = readMavenPom file: 'pom.xml'
+//                   echo "${pom.version} pom version"
               }
             }
         }
@@ -29,13 +29,13 @@ pipeline {
         stage('---display parameters---') {
             steps {
                 echo "-------------------------------------"
-                echo "${params.Repo_Name} Repository name"
-                echo "${params.Sonar_URL} Sonar URL"
+//                echo "${params.Repo_Name} Repository name"
+//                echo "${params.Sonar_URL} Sonar URL"
                 echo "${JOB_NAME} Job Name "
                 echo "${JENKINS_HOME} Jenkins home "
                  echo "${HOME} Jenkins HOME**** "
                 echo "${WORKSPACE} Jenkins workspace ****** "
-                echo  "${params.Repo_Name11} Repository name11"
+//                echo  "${params.Repo_Name11} Repository name11"
                 echo "-------------------------------------"
             }
         }
@@ -65,10 +65,14 @@ pipeline {
         stage('---run CheckSonarQubeQualityGate.py python script---') {
             steps {
                 echo "-------------------------------------"
-                echo "${params.Repo_Name} the Repo name"
-                echo "${params.Sonar_URL} Sonar URL"
+//                echo "${params.Repo_Name} the Repo name"
+//                echo "${params.Sonar_URL} Sonar URL"
+                 echo "${WORKSPACE} Jenkins workspace ****** "
+                echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()                
+
                 echo "-------------------------------------"
-                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
+//                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
+               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py "${WORKSPACE} pomM['sonar.host.url'].text().trim()  
             }
         }
     }
