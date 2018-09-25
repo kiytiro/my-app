@@ -1,3 +1,4 @@
+
 String determineRepoName() {
     return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
 }
@@ -16,6 +17,8 @@ pipeline {
                 echo "${params.Repo_Name} Repository name"
                 echo "${params.Sonar_URL} Sonar URL"
                 echo "${JOB_NAME} Job Name "
+                echo "${JENKINS_HOME} Jenkins home "
+                 echo "${HOME} Jenkins HOME**** "
                 echo  "${params.Repo_Name11} Repository name11"
                 echo "-------------------------------------"
             }
