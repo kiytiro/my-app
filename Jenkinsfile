@@ -39,7 +39,8 @@ pipeline {
 //                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
                      
                      //Extract the data you needed from existing xml
-                     def xml1 = new XmlSlurper().parse(new File("pom.xml")) 
+                    // def xml1 = new XmlSlurper().parse(new File("pom.xml")) 
+                   def list = new XmlSlurper().parseText('pom.xml')
                   echo "xml1 file: " + xml1
  //                   def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
        //              def nodes = sonar_host.children()*.name()
