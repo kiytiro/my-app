@@ -72,7 +72,7 @@ pipeline {
 
                 echo "-------------------------------------"
 //                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
-               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py "${WORKSPACE} pomM['sonar.host.url'].text().trim()"  
+               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} pomM['sonar.host.url'].text().trim()"  
             }
         }
     }
