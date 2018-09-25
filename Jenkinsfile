@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('---read pom.xml file---') {
             steps {
-
+              script {
               def pomFile = readFile('pom.xml')
               def pomM = new XmlParser().parseText(pomFile)
               def gavMap = [:]
@@ -19,6 +19,7 @@ pipeline {
              
               echo "Version : " + pomM['version'].text().trim()
               echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
+              }
 
               script {
                    def pom = readMavenPom file: 'pom.xml'
