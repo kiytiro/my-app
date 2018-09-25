@@ -10,17 +10,17 @@ pipeline {
         stage('---read pom.xml file---') {
             steps {
 
-//              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>) pom.xml')
+              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>) pom.xml')
                 
               script {
-                   def pomFile = readFile('pom.xml')
-                   def pomM = new XmlParser().parseText(pomFile)
-                     echo "pomM file: " + pomM
-                   def gavMap = [:]
-                   gavMap['groupId'] =  pomM['groupId'].text().trim()
-                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
-                   gavMap['version'] =  pomM['version'].text().trim()
-             echo pomM.profiles.profile.properties.'sonar.host.url'[0].text().trim()
+//                   def pomFile = readFile('pom.xml')
+//                   def pomM = new XmlParser().parseText(pomFile)
+//                     echo "pomM file: " + pomM
+//                   def gavMap = [:]
+//                   gavMap['groupId'] =  pomM['groupId'].text().trim()
+//                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
+//                   gavMap['version'] =  pomM['version'].text().trim()
+//             echo pomM.profiles.profile.properties.'sonar.host.url'[0].text().trim()
 //             
                 echo "*******************************************************"
 //                   echo "Version : " + pomM['version']
