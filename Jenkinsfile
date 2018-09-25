@@ -26,7 +26,7 @@ echo "pomFile file: " + pomFile
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
                    gavMap['artifactId'] =  pomM['artifactId'].text().trim()
                    gavMap['version'] =  pomM['version'].text().trim()
-                   gavMap['sonar.host.url'] =  pomM['sonar.host.url'].text().trim()
+                   gavMap['sonar.host.url'] =  pomM['profiles'.'profile'.'properties'.'sonar.host.url'].text().trim()
                   echo "${gavMap} the gav Map"
 //             echo pomM.profiles[0].profile.properties.'sonar.host.url'.text().trim()
 
@@ -45,7 +45,6 @@ echo "pomFile file: " + pomFile
                     // def xml1 = new XmlSlurper().parse(new File("pom.xml")) 
                    def list = new XmlSlurper().parseText(pomFile)
 
-println list.@count
 
                   echo "list file: " + list
  //                   def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
