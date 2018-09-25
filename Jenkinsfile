@@ -5,6 +5,11 @@ String determineRepoName() {
 
 pipeline {
     agent any
+
+    pom = readMavenPom file: 'pom.xml'
+    echo "pom.version pom version"
+    echo "pom.sonar.host.url sonarqube URL"
+
     parameters { 
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
         string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
@@ -19,7 +24,6 @@ pipeline {
                 echo "${JOB_NAME} Job Name "
                 echo "${JENKINS_HOME} Jenkins home "
                  echo "${HOME} Jenkins HOME**** "
-                echo "${TMPDIR} Jenkins tempdir  "
                 echo  "${params.Repo_Name11} Repository name11"
                 echo "-------------------------------------"
             }
