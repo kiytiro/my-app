@@ -13,17 +13,20 @@ pipeline {
                 
               script {
 
-                   def sonar_url = sh "grep -o ?<=<sonar.host.url>.*?=</sonar.host.url> pom.xml"
-                  echo "${sonar_url} the sonar url"
+            //       def sonar_url = sh "grep -o ?<=<sonar.host.url>.*?=</sonar.host.url> pom.xml"
+            //      echo "${sonar_url} the sonar url"
 
-//                   def pomFile = readFile('pom.xml')
-//                   def pomM = new XmlParser().parseText(pomFile)
-//                     echo "pomM file: " + pomM
-//                   def gavMap = [:]
-//                   gavMap['groupId'] =  pomM['groupId'].text().trim()
-//                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
-//                   gavMap['version'] =  pomM['version'].text().trim()
+                   def pomFile = readFile('pom.xml')
+                   def pomM = new XmlParser().parseText(pomFile)
+                     echo "pomM file: " + pomM
+                   def gavMap = [:]
+                   gavMap['groupId'] =  pomM['groupId'].text().trim()
+                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
+                   gavMap['version'] =  pomM['version'].text().trim()
+echo pomM.profiles.profile[0].properties.'sonar.host.url'.text().trim()
 //             echo pomM.profiles[0].profile.properties.'sonar.host.url'.text().trim()
+
+
 //             
                 echo "*******************************************************"
 //                   echo "Version : " + pomM['version']
