@@ -19,6 +19,7 @@ pipeline {
                 echo "${JOB_NAME} Job Name "
                 echo "${JENKINS_HOME} Jenkins home "
                  echo "${HOME} Jenkins HOME**** "
+                echo "${TMPDIR} Jenkins tempdir **** "
                 echo  "${params.Repo_Name11} Repository name11"
                 echo "-------------------------------------"
             }
