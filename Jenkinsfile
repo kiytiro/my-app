@@ -20,7 +20,7 @@ pipeline {
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
                    gavMap['artifactId'] =  pomM['artifactId'].text().trim()
                    gavMap['version'] =  pomM['version'].text().trim()
-             echo pomM['profiles'].['profile'].['properties'].['sonar.host.url'].text().trim()
+             echo pomM.profiles.profile.properties.'sonar.host.url'.text().trim()
 //             
                 echo "*******************************************************"
 //                   echo "Version : " + pomM['version']
