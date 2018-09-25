@@ -21,6 +21,7 @@ echo "pomFile file: " + pomFile
 
                    def pomM = new XmlParser().parseText(pomFile)
                      echo "pomM file: " + pomM
+println "sonar = ${pomM.attribute("sonar.host.url"a)"
                    def gavMap = [:]
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
                    gavMap['artifactId'] =  pomM['artifactId'].text().trim()
@@ -43,6 +44,8 @@ echo "pomFile file: " + pomFile
                      //Extract the data you needed from existing xml
                     // def xml1 = new XmlSlurper().parse(new File("pom.xml")) 
                    def list = new XmlSlurper().parseText(pomFile)
+
+println list.@count
 
                   echo "list file: " + list
  //                   def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
