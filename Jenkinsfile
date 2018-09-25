@@ -23,7 +23,7 @@ pipeline {
 //                   def sonar_url = pomM[''profiles.properties.'sonari.host.url'']
 //                   echo "Sonar URL: " + sonar_url
 
-                   def pom = readMavenPom file: 'pom.xml'
+//                   def pom = readMavenPom file: 'pom.xml'
 //                   echo "${pom.version} pom version"
 //                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
               }
@@ -63,8 +63,8 @@ pipeline {
                 echo "-------------------------------------"
                 echo "-------SonarQube - Running -------------"
                 echo "-------------------------------------"
-                echo "${SONAR_HOST_URL} the sonar host URL"
                 sh "mvn sonar:sonar"
+echo "${SONAR_HOST_URL} the sonar host URL"
 
             }
         }
