@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('---read pom.xml file---') {
             steps {
+              echo "SONAR_SERVER = " + SONAR_SERVER
               script {
                    def pom = readMavenPom file: 'pom.xml'
                    echo "${pom.version} pom version"
