@@ -15,9 +15,11 @@ pipeline {
     stages {
         stage('---read pom.xml file---') {
             steps {
-              def pom = readMavenPom file: 'pom.xml'
-              echo "${pom.version} pom version"
-              echo "${pom.sonar.host.url} sonarqube URL"
+              script {
+                   def pom = readMavenPom file: 'pom.xml'
+                   echo "${pom.version} pom version"
+                   echo "${pom.sonar.host.url} sonarqube URL"
+              }
             }
         }
 
