@@ -6,7 +6,7 @@ String determineRepoName() {
 pipeline {
     agent any
 
-    pom = readMavenPom file: 'pom.xml'
+    def pom = readMavenPom file: 'pom.xml'
     echo "${pom.version} pom version"
     echo "${pom.sonar.host.url} sonarqube URL"
 
