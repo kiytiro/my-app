@@ -20,8 +20,8 @@ pipeline {
              
                    echo "Version : " + pomM['version'].text().trim()
                    echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
-//                   def sonar_url = pomM['sonar.host.url'].text().trim()
-                   def sonar_url = pomM['profiles'.'properties'.'sonar_host_url']
+                   def sonar_url = pomM['profiles'.'properties'.'sonari.host.url']
+                   echo "Sonar URL: " + sonar_url
 
 //                   def pom = readMavenPom file: 'pom.xml'
 //                   echo "${pom.version} pom version"
