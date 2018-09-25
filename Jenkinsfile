@@ -34,7 +34,8 @@ pipeline {
                      def xml1 = new XmlSlurper().parseText('pom.xml') 
                      def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
        //              def nodes = sonar_host.children()*.name()
-                     println XmlUtil.serialize(sonar_host)
+       //              println XmlUtil.serialize(sonar_host)
+                     echo "${sonar_host} the sonar host "
 
               }
             }
@@ -74,7 +75,6 @@ pipeline {
                 echo "-------SonarQube - Running -------------"
                 echo "-------------------------------------"
                 sh "mvn sonar:sonar"
-echo "${SONAR_HOST_URL} the sonar host URL"
 
             }
         }
