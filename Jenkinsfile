@@ -63,7 +63,9 @@ pipeline {
                 echo "-------------------------------------"
                 echo "-------SonarQube - Running -------------"
                 echo "-------------------------------------"
+                echo "${SONAR_HOST_URL} the sonar host URL"
                 sh "mvn sonar:sonar"
+
             }
         }
         stage('---run CheckSonarQubeQualityGate.py python script---') {
