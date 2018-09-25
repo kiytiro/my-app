@@ -10,21 +10,18 @@ pipeline {
         stage('---read pom.xml file---') {
             steps {
               script {
-              def pomFile = readFile('pom.xml')
-              def pomM = new XmlParser().parseText(pomFile)
-              def gavMap = [:]
-              gavMap['groupId'] =  pomM['groupId'].text().trim()
-              gavMap['artifactId'] =  pomM['artifactId'].text().trim()
-              gavMap['version'] =  pomM['version'].text().trim()
+                   def pomFile = readFile('pom.xml')
+                   def pomM = new XmlParser().parseText(pomFile)
+                   def gavMap = [:]
+                   gavMap['groupId'] =  pomM['groupId'].text().trim()
+                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
+                   gavMap['version'] =  pomM['version'].text().trim()
              
-              echo "Version : " + pomM['version'].text().trim()
-              echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
-              }
+                   echo "Version : " + pomM['version'].text().trim()
+                   echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
 
-              script {
                    def pom = readMavenPom file: 'pom.xml'
                    echo "${pom.version} pom version"
-                   echo "${pom.sonar.host.url} sonarqube URL"
               }
             }
         }
