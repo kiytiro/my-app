@@ -21,7 +21,7 @@ echo "pomFile file: " + pomFile
 
                    def pomM = new XmlParser().parseText(pomFile)
                      echo "pomM file: " + pomM
-println "sonar = ${pomM.attribute("sonar.host.url")"
+println sonar = ${pomM.attribute("sonar.host.url")
                    def gavMap = [:]
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
                    gavMap['artifactId'] =  pomM['artifactId'].text().trim()
