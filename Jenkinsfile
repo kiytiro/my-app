@@ -1,8 +1,3 @@
-
-String determineRepoName() {
-    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
-}
-
 pipeline {
     agent any
 
@@ -10,7 +5,6 @@ pipeline {
     parameters { 
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
         string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
-        string(name: 'Repo_Name11', defaultValue: determineRepoName(), description: 'Repo name111 ')
     } 
     stages {
         stage('---read pom.xml file---') {
