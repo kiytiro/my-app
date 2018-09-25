@@ -9,7 +9,17 @@ pipeline {
     stages {
         stage('---read pom.xml file---') {
             steps {
-              echo "SONAR_SERVER = " + SONAR_SERVER
+
+              def pomFile = readFile(pomName)
+              def pomM = new XmlParser().parseText(pomFile)
+              def gavMap = [:]
+              gavMap['groupId'] =  pomM['groupId'].text().trim()
+              gavMap['artifactId'] =  pomM['artifactId'].text().trim()
+              gavMap['version'] =  pomM['version'].text().trim()
+             
+              echo "Version : " + pomM['version'].text().trim()
+              echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
+
               script {
                    def pom = readMavenPom file: 'pom.xml'
                    echo "${pom.version} pom version"
