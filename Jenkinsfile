@@ -13,7 +13,7 @@ pipeline {
                 
               script {
 
-                   def sonar_url = sh "grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>) pom.xml"
+                   def sonar_url = sh "grep -o ?<=<sonar.host.url>.*?=</sonar.host.url> pom.xml"
                   echo "${sonar_url} the sonar url"
 
 //                   def pomFile = readFile('pom.xml')
