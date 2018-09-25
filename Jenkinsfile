@@ -10,7 +10,7 @@ pipeline {
         stage('---read pom.xml file---') {
             steps {
 
-              def pomFile = readFile(pomName)
+              def pomFile = readFile('pom.xml')
               def pomM = new XmlParser().parseText(pomFile)
               def gavMap = [:]
               gavMap['groupId'] =  pomM['groupId'].text().trim()
