@@ -24,8 +24,8 @@ pipeline {
 //                   echo "Sonar URL: " + sonar_url
 
                    def pom = readMavenPom file: 'pom.xml'
-                   echo "${pom.version} pom version"
-                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
+//                   echo "${pom.version} pom version"
+//                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
               }
             }
         }
