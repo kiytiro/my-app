@@ -7,8 +7,8 @@ pipeline {
     agent any
 
     pom = readMavenPom file: 'pom.xml'
-    echo "pom.version pom version"
-    echo "pom.sonar.host.url sonarqube URL"
+    echo "${pom.version} pom version"
+    echo "${pom.sonar.host.url} sonarqube URL"
 
     parameters { 
         string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
