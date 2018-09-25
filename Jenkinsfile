@@ -19,6 +19,7 @@ pipeline {
              
                    echo "Version : " + pomM['version'].text().trim()
                    echo "Sonar URL : " + pomM['sonar.host.url'].text().trim()
+                   sonar_url = pomM['sonar.host.url'].text().trim()
 
 //                   def pom = readMavenPom file: 'pom.xml'
 //                   echo "${pom.version} pom version"
@@ -72,7 +73,7 @@ pipeline {
 
                 echo "-------------------------------------"
 //                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
-               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} pomM['sonar.host.url'].text().trim()"  
+               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} sonar_url"  
             }
         }
     }
