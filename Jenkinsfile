@@ -17,6 +17,8 @@ pipeline {
             //      echo "${sonar_url} the sonar url"
 
                    def pomFile = readFile('pom.xml')
+echo "pomFile file: " + pomFile
+
                    def pomM = new XmlParser().parseText(pomFile)
                      echo "pomM file: " + pomM
                    def gavMap = [:]
