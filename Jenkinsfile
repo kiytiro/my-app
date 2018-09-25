@@ -10,7 +10,7 @@ pipeline {
         stage('---read pom.xml file---') {
             steps {
 
-              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>) ./pom.xml')
+              def sonar_url = sh(script: 'grep -o (?<=<sonar.host.url>).*(?=</sonar.host.url>)pom.xml')
                 
 //              script {
 //                   def pomFile = readFile('pom.xml')
