@@ -29,7 +29,7 @@ echo "pomFile file: " + pomFile
                    gavMap['profiles'] =  pomM['profiles'].text().trim()
                    gavMap['profile'] =  pomM['profile'].text().trim()
                    gavMap['properties'] =  pomM['properties'].text().trim()
-echo "Sonar URL: pomM['properties'].text().trim()"
+echo "Sonar URL: ${pomM['properties'].text().trim()}"
 //gavMap['properties'] =  pomMi.properties[2].text().trim()
  gavMap['id'] = pomM['project.profiles.profile.id'].text()
  
