@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-
+    def SONAR_URL
 //    parameters { 
 //        string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
 //        string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
@@ -34,7 +34,7 @@ echo "pomFile file: " + pomFile
 def sonarURL =  pomM['profiles'].text().trim()
 // check for string that contains the sonar URL
 def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
-env.SONAR_URL = sonarURL.substring(sonarURL.indexOf('http'))
+SONAR_URL = sonarURL.substring(sonarURL.indexOf('http'))
 echo "Sonar URL: ${sonarURL}"
 echo "The sonar URL ----------    ${sonar_URL}"
 println(sonarURL.length())
