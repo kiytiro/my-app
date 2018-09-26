@@ -23,11 +23,6 @@ echo "pomFile file: " + pomFile
                      echo "pomM file: " + pomM
 
                    // check for line that contains the
- //                  def data = pomM.filterLine { line ->
- //                      line.contains('"http":')
- //                      
- //                  }
- //                   echo "Line: ${data}"
 
                    def gavMap = [:]
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
@@ -36,9 +31,11 @@ echo "pomFile file: " + pomFile
                    gavMap['profiles'] =  pomM['profiles'].text().trim()
                    gavMap['profile'] =  pomM['profile'].text().trim()
                    gavMap['properties'] =  pomM['properties'].text().trim()
-                   def sonarURL =  pomM['profiles'].text().trim()
+def sonarURL =  pomM['profiles'].text().trim()
+// check for string that contains the sonar URL
+def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
 echo "Sonar URL: ${sonarURL}"
-echo "S${sonarURL}F"
+echo "${sonar_URL}"
 println(sonarURL.length())
 //gavMap['properties'] =  pomMi.properties[2].text().trim()
  gavMap['id'] = pomM['project.profiles.profile.id'].text()
