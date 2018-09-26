@@ -34,6 +34,7 @@ echo "pomFile file: " + pomFile
 def sonarURL =  pomM['profiles'].text().trim()
 // check for string that contains the sonar URL
 def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
+env.SONAR_URL = sonarURL.substring(sonarURL.indexOf('http'))
 echo "Sonar URL: ${sonarURL}"
 echo "The sonar URL ----------    ${sonar_URL}"
 println(sonarURL.length())
@@ -114,11 +115,11 @@ println(sonarURL.length())
 //                echo "${params.Repo_Name} the Repo name"
 //                echo "${params.Sonar_URL} Sonar URL"
                  echo "${WORKSPACE} Jenkins workspace ****** "
-                echo "Sonar URL : " + sonar_URL                
+                echo "Sonar URL : " + ${SONAR_URL}                
 
                 echo "-------------------------------------"
 //                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
-               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} sonar_URL"  
+               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} ${SONAR_URLi}"  
             }
         }
     }
