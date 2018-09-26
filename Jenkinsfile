@@ -23,11 +23,11 @@ echo "pomFile file: " + pomFile
                      echo "pomM file: " + pomM
 
                    // check for line that contains the
-                   def data = pomM.filterLine { line ->
-                       line.contains('"http":')
-                       
-                   }
-                    echo "Line: ${data}"
+ //                  def data = pomM.filterLine { line ->
+ //                      line.contains('"http":')
+ //                      
+ //                  }
+ //                   echo "Line: ${data}"
 
                    def gavMap = [:]
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
