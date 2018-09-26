@@ -22,6 +22,13 @@ pipeline {
               }
             }
         }
+        stage('---format project path---') {
+            steps {
+                env.PROJECT_PATH = '${WORKSPACE}/examples/jenkins/maven_quality_gate_example/my-app'
+                echo "Project path: ${PROJECT_PATH}"
+            }
+        }
+
         stage('---clean---') {
             steps {
                 sh "mvn clean"
