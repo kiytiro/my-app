@@ -38,54 +38,22 @@ env.SONAR_HOST_URL = sonarURL.substring(sonarURL.indexOf('http'))
 echo "Sonar URL: ${sonarURL}"
 echo "The sonar URL ----------    ${sonar_URL}"
 println(sonarURL.length())
-
-
-//gavMap['properties'] =  pomMi.properties[2].text().trim()
-// gavMap['id'] = pomM['project.profiles.profile.id'].text()
- 
-                //   gavMap['sonar.host.url'] =  pomM['profiles'.'profile'.'properties'.'sonar.host.url'].text().trim()
-//                  echo "${gavMap} the gav Map"
-//             echo pomM.profiles[0].profile.properties.'sonar.host.url'.text().trim()
-
-//             
-//                echo "*******************************************************"
-//                   echo "Version : " + pomM['version']
-//                   def sonar_url = pomM[''profiles.properties.'sonari.host.url'']
-//                   echo "Sonar URL: " + sonar_url
-
-//                   def pom = readMavenPom file: 'pom.xml'
-//                   echo "${pom.version} pom version"
-//                   echo "${pom.profiles.properties.'sonar.host.url'} sonar "
                      
-                     //Extract the data you needed from existing xml
-                    // def xml1 = new XmlSlurper().parse(new File("pom.xml")) 
-                //   def list = new XmlSlurper().parseText(pomFile)
-
-
-              //    echo "list file: " + list
- //                   def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
-       //              def nodes = sonar_host.children()*.name()
-       //              println XmlUtil.serialize(sonar_host)
-//                     echo "${sonar_host} the sonar host "
-//echo "${xml1.profiles.profile.properties.'sonar.host.url'} sonar ********"
 
               }
             }
         }
 
-        stage('---display parameters---') {
-            steps {
-                echo "-------------------------------------"
-//                echo "${params.Repo_Name} Repository name"
-//                echo "${params.Sonar_URL} Sonar URL"
-                echo "${JOB_NAME} Job Name "
-                echo "${JENKINS_HOME} Jenkins home "
-                 echo "${HOME} Jenkins HOME**** "
-                echo "${WORKSPACE} Jenkins workspace ****** "
-//                echo  "${params.Repo_Name11} Repository name11"
-                echo "-------------------------------------"
-            }
-        }
+//        stage('---display parameters---') {
+//            steps {
+//                echo "-------------------------------------"
+//                echo "${JOB_NAME} Job Name "
+//                echo "${JENKINS_HOME} Jenkins home "
+//                 echo "${HOME} Jenkins HOME**** "
+//                echo "${WORKSPACE} Jenkins workspace ****** "
+//                echo "-------------------------------------"
+//            }
+//        }
         stage('---clean---') {
             steps {
                 sh "mvn clean"
