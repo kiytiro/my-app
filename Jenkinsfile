@@ -33,8 +33,7 @@ echo "pomFile file: " + pomFile
 def sonarURL =  pomM['profiles'].text().trim()
 // check for string that contains the sonar URL
 def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
-//SONAR_URL = sonarURL.substring(sonarURL.indexOf('http'))
-Binding SONAR_URL = new Binding(sonar_URL)
+env.SONAR_URL = sonarURL.substring(sonarURL.indexOf('http'))
 echo "Sonar URL: ${sonarURL}"
 echo "The sonar URL ----------    ${sonar_URL}"
 println(sonarURL.length())
