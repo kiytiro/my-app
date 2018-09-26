@@ -16,37 +16,39 @@ pipeline {
             //      echo "${sonar_url} the sonar url"
 
                    def pomFile = readFile('pom.xml')
-echo "pomFile file: " + pomFile
+//echo "pomFile file: " + pomFile
 
                    def pomM = new XmlParser().parseText(pomFile)
-                     echo "pomM file: " + pomM
+//                     echo "pomM file: " + pomM
 
                    // check for line that contains the
 
-                   def gavMap = [:]
-                   gavMap['groupId'] =  pomM['groupId'].text().trim()
-                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
-                   gavMap['version'] =  pomM['version'].text().trim()
-                   gavMap['profiles'] =  pomM['profiles'].text().trim()
-                   gavMap['profile'] =  pomM['profile'].text().trim()
-                   gavMap['properties'] =  pomM['properties'].text().trim()
+//                   def gavMap = [:]
+//                   gavMap['groupId'] =  pomM['groupId'].text().trim()
+//                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
+//                   gavMap['version'] =  pomM['version'].text().trim()
+//                   gavMap['profiles'] =  pomM['profiles'].text().trim()
+//                   gavMap['profile'] =  pomM['profile'].text().trim()
+//                   gavMap['properties'] =  pomM['properties'].text().trim()
+
 def sonarURL =  pomM['profiles'].text().trim()
 // check for string that contains the sonar URL
 def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
-env.SONAR_URL = sonarURL.substring(sonarURL.indexOf('http'))
+env.SONAR_HOST_URL = sonarURL.substring(sonarURL.indexOf('http'))
 echo "Sonar URL: ${sonarURL}"
 echo "The sonar URL ----------    ${sonar_URL}"
 println(sonarURL.length())
+
+
 //gavMap['properties'] =  pomMi.properties[2].text().trim()
- gavMap['id'] = pomM['project.profiles.profile.id'].text()
+// gavMap['id'] = pomM['project.profiles.profile.id'].text()
  
                 //   gavMap['sonar.host.url'] =  pomM['profiles'.'profile'.'properties'.'sonar.host.url'].text().trim()
-                  echo "${gavMap} the gav Map"
+//                  echo "${gavMap} the gav Map"
 //             echo pomM.profiles[0].profile.properties.'sonar.host.url'.text().trim()
 
-
 //             
-                echo "*******************************************************"
+//                echo "*******************************************************"
 //                   echo "Version : " + pomM['version']
 //                   def sonar_url = pomM[''profiles.properties.'sonari.host.url'']
 //                   echo "Sonar URL: " + sonar_url
@@ -57,10 +59,10 @@ println(sonarURL.length())
                      
                      //Extract the data you needed from existing xml
                     // def xml1 = new XmlSlurper().parse(new File("pom.xml")) 
-                   def list = new XmlSlurper().parseText(pomFile)
+                //   def list = new XmlSlurper().parseText(pomFile)
 
 
-                  echo "list file: " + list
+              //    echo "list file: " + list
  //                   def sonar_host = xml1.'**'.find{it.name() == 'sonar.host.url'}
        //              def nodes = sonar_host.children()*.name()
        //              println XmlUtil.serialize(sonar_host)
@@ -111,14 +113,10 @@ println(sonarURL.length())
         stage('---run CheckSonarQubeQualityGate.py python script---') {
             steps {
                 echo "-------------------------------------"
-//                echo "${params.Repo_Name} the Repo name"
-//                echo "${params.Sonar_URL} Sonar URL"
-                 echo "${WORKSPACE} Jenkins workspace ****** "
-                echo "Sonar URL :  ${SONAR_URL}"                
-
+                echo "${WORKSPACE} Jenkins workspace ****** "
+                echo "Sonar URL :  ${SONAR_HOST_URL}"                
                 echo "-------------------------------------"
-//                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
-               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} ${SONAR_URL}"  
+               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} ${SONAR_HOST_URL}"  
             }
         }
     }
