@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-//    parameters { 
-//        string(name: 'Sonar_URL', defaultValue: 'http://172.23.164.252:9000', description: 'Sonar URL ')
-//        string(name: 'Repo_Name', defaultValue: 'ParameterQualityGate_1', description: 'Repo name ')
-//    } 
     stages {
         stage('---read pom.xml file---') {
             steps {
@@ -12,33 +8,18 @@ pipeline {
                 
               script {
 
-            //       def sonar_url = sh "grep -o ?<=<sonar.host.url>.*?=</sonar.host.url> pom.xml"
-            //      echo "${sonar_url} the sonar url"
-
                    def pomFile = readFile('pom.xml')
-//echo "pomFile file: " + pomFile
 
-                   def pomM = new XmlParser().parseText(pomFile)
-//                     echo "pomM file: " + pomM
+                   def pom = new XmlParser().parseText(pomFile)
 
-                   // check for line that contains the
+                   def sonarURL =  pom['profiles'].text().trim()
 
-//                   def gavMap = [:]
-//                   gavMap['groupId'] =  pomM['groupId'].text().trim()
-//                   gavMap['artifactId'] =  pomM['artifactId'].text().trim()
-//                   gavMap['version'] =  pomM['version'].text().trim()
-//                   gavMap['profiles'] =  pomM['profiles'].text().trim()
-//                   gavMap['profile'] =  pomM['profile'].text().trim()
-//                   gavMap['properties'] =  pomM['properties'].text().trim()
-
-def sonarURL =  pomM['profiles'].text().trim()
-// check for string that contains the sonar URL
-def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
-env.SONAR_HOST_URL = sonarURL.substring(sonarURL.indexOf('http'))
-echo "Sonar URL: ${sonarURL}"
-echo "The sonar URL ----------    ${sonar_URL}"
-println(sonarURL.length())
-                     
+                   // check for string that contains the sonar URL
+//                   def sonar_URL = sonarURL.substring(sonarURL.indexOf('http'))
+                   env.SONAR_HOST_URL = sonarURL.substring(sonarURL.indexOf('http'))
+//echo "Sonar URL: ${sonarURL}"
+//echo "The sonar URL ----------    ${sonar_URL}"
+//println(sonarURL.length())
 
               }
             }
