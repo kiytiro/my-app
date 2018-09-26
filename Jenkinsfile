@@ -24,9 +24,9 @@ echo "pomFile file: " + pomFile
 
                    def data = pomM.filterLine { line ->
                        // check if the line contains the sonar URL
-                       line.contains('"http":'){
+                       line.contains('"http":')
                            return line
-                       }
+                       
                    }
                     echo "Line: ${line}"
 
