@@ -22,13 +22,12 @@ echo "pomFile file: " + pomFile
                    def pomM = new XmlParser().parseText(pomFile)
                      echo "pomM file: " + pomM
 
+                   // check for line that contains the
                    def data = pomM.filterLine { line ->
-                       // check if the line contains the sonar URL
                        line.contains('"http":')
-                           return line
                        
                    }
-                    echo "Line: ${line}"
+                    echo "Line: ${data}"
 
                    def gavMap = [:]
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
@@ -40,6 +39,7 @@ echo "pomFile file: " + pomFile
                    def sonarURL =  pomM['profiles'].text().trim()
 echo "Sonar URL: ${sonarURL}"
 echo "S${sonarURL}F"
+println(sonarURL.length())
 //gavMap['properties'] =  pomMi.properties[2].text().trim()
  gavMap['id'] = pomM['project.profiles.profile.id'].text()
  
