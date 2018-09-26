@@ -28,7 +28,7 @@ echo "pomFile file: " + pomFile
                            return line
                        }
                    }
-                    echo "Line: ${line}")
+                    echo "Line: ${line}"
 
                    def gavMap = [:]
                    gavMap['groupId'] =  pomM['groupId'].text().trim()
