@@ -24,8 +24,10 @@ pipeline {
         }
         stage('---format project path---') {
             steps {
-                env.PROJECT_PATH = '${WORKSPACE}/examples/jenkins/maven_quality_gate_example/my-app'
+                def project_path = "${WORKSPACE}/examples/jenkins/maven_quality_gate_example/my-app"
+                env.PROJECT_PATH = project_path
                 echo "Project path: ${PROJECT_PATH}"
+
             }
         }
 
