@@ -114,7 +114,7 @@ println(sonarURL.length())
 //                echo "${params.Repo_Name} the Repo name"
 //                echo "${params.Sonar_URL} Sonar URL"
                  echo "${WORKSPACE} Jenkins workspace ****** "
-//                echo "Sonar URL : ${sonar_url}"                
+                echo "Sonar URL : ${sonar_URL}"                
 
                 echo "-------------------------------------"
 //                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
