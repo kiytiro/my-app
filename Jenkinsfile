@@ -31,6 +31,7 @@ echo "pomFile file: " + pomFile
                    gavMap['properties'] =  pomM['properties'].text().trim()
                    def sonarURL =  pomM['profiles'].text().trim()
 echo "Sonar URL: ${sonarURL}"
+echo "S${sonarURL}F"
 //gavMap['properties'] =  pomMi.properties[2].text().trim()
  gavMap['id'] = pomM['project.profiles.profile.id'].text()
  
