@@ -5,16 +5,20 @@ pipeline {
         stage('---read pom.xml file---') {
             steps {
 
-              script {
+               // Get the SonarQube host URL from the pom.xml
+               script {
+                  // read the pom.xml file
+                  def pomFile = readFile('pom.xml')
 
-                   def pomFile = readFile('pom.xml')
+                  // parse the file as XML file
+                  def pom = new XmlParser().parseText(pomFile)
 
-                   def pom = new XmlParser().parseText(pomFile)
+                  // get the XML attribute that contains the SonarQube host URL
+                  def sonarURL =  pom['profiles'].text().trim()
 
-                   def sonarURL =  pom['profiles'].text().trim()
-
-                   // check for string that contains the sonar URL
-                   env.SONAR_HOST_URL = sonarURL.substring(sonarURL.indexOf('http'))
+                  // check for string that contains the sonar URL and bind it for
+                  // the CheckSonarQubeQualityGate python to use as a parameter
+                  env.SONAR_HOST_URL = sonarURL.substring(sonarURL.indexOf('http'))
               }
             }
         }
