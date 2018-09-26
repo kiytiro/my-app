@@ -118,7 +118,7 @@ println(sonarURL.length())
 
                 echo "-------------------------------------"
 //                sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${params.Repo_Name} ${params.Sonar_URL}"
-               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} ${sonar_URL}"  
+               sh "python3 /home/labuser/pythonScripts/CheckSonarQubeQualityGate.py ${WORKSPACE} sonar_URL"  
             }
         }
     }
